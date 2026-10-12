@@ -1,0 +1,35 @@
+
+==============================================================================
+Bước 3 · SILVER FRAMES: video thành khung hình, cờ chất lượng, join theo event time
+==============================================================================
+  đã xử lý 26 trip, tổng 1246 khung hình (mỗi trip một partition)
+  dbt run (trips + cờ + join): PASS=4 WARN=0 ERROR=0 SKIP=0
+  dbt test: PASS=8 WARN=0 ERROR=0 SKIP=0
+  {'silver.trips': {'rows': 26, 'version': 0}, 'silver.frames_flagged': {'rows': 1246, 'version': 0}, 'silver.frame_telemetry': {'rows': 1246, 'version': 0}}
+
+> Khung hình đi đâu (một khung có thể bị nhiều cờ)
+drive_id  tong  den  mo  toi_giu_lai  trung  mat_dong_bo
+--------  ----  ---  --  -----------  -----  -----------
+drive_a   602   6    9   4            149    7          
+drive_b   644   4    0   61           53     7          
+
+> Độ trễ đồng bộ giữa khung hình và telemetry (ms)
+drive_id  tb_ms  toi_da_ms
+--------  -----  ---------
+drive_a   66.0   2884     
+drive_b   73.0   3112     
+
+CẦN THẤY: drive A có 6 khung đen, drive B có 4; 'tối_giữ_lại' của B lớn (đường hầm, bóng râm): tối KHÔNG phải đen và không bị bỏ; khung trùng nhiều (xe chạy chậm, camera đứng hình 6 giây ở A); độ trễ đồng bộ trung bình nhỏ.
+
+--- Kiểm tra tự động của module 3 (verify --module 3) ---
+
+Module 3 · silver frames
+  PASS  frame_id unique                                   1246 frames
+  PASS  black frames detected (drive_a)                   6/6
+  PASS  black frames detected (drive_b)                   4/4
+  PASS  blurry frames detected (drive_a)                  8/8
+  PASS  frozen camera = near-duplicate frames (drive_a)   11/12
+  PASS  low-light frames flagged but not black (drive_b)  10/10
+
+6/6 checks passed
+{"ok": true}
