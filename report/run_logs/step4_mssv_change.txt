@@ -1,0 +1,27 @@
+== LAB_STUDENT_ID=2A202602383 (thử) ==
+  dbt test (gồm test chống rò rỉ split): PASS=7 WARN=0 ERROR=0 SKIP=0
+  {"dataset_version": "ebcade044cbb", "frames": 1019, "by_split": {"train": 740, "val": 145, "test": 134}, "trips_by_split": {"train": 18, "test": 4, "val": 4}}
+drive_a   train  309         9     44.0         
+drive_a   val    66          2     31.0         
+drive_a   test   61          2     31.0         
+drive_b   train  431         9     71.0         
+drive_b   val    79          2     72.0         
+drive_b   test   73          2     66.0         
+MSSV dùng để chia split: 2A202602383
+CẦN THẤY: mỗi drive có đủ train, val, test; một trip chỉ nằm trong MỘT split; dataset_version là chuỗi 12 ký tự (đổi MSSV thì đổi version).
+  PASS  every drive appears in train, val and test                            
+  PASS  one dataset_version, manifest.json agrees with the table              version ebcade044cbb
+== LAB_STUDENT_ID=2A202602382 (MSSV thật, đặt lại) ==
+  dbt test (gồm test chống rò rỉ split): PASS=7 WARN=0 ERROR=0 SKIP=0
+  {"dataset_version": "00f83d03d17d", "frames": 1019, "by_split": {"val": 164, "train": 684, "test": 171}, "trips_by_split": {"test": 4, "train": 18, "val": 4}}
+drive_a   train  271         9     36.0         
+drive_a   val    82          2     40.0         
+drive_a   test   83          2     52.0         
+drive_b   train  413         9     67.0         
+drive_b   val    82          2     80.0         
+drive_b   test   88          2     75.0         
+MSSV dùng để chia split: 2A202602382
+CẦN THẤY: mỗi drive có đủ train, val, test; một trip chỉ nằm trong MỘT split; dataset_version là chuỗi 12 ký tự (đổi MSSV thì đổi version).
+  PASS  every drive appears in train, val and test                            
+  PASS  one dataset_version, manifest.json agrees with the table              version 00f83d03d17d
+7/7 checks passed

@@ -1,0 +1,34 @@
+
+==============================================================================
+Bước 4 · GOLD: dataset huấn luyện, chia theo trip, có phiên bản
+==============================================================================
+  dbt run (gold): PASS=2 WARN=0 ERROR=0 SKIP=0
+  dbt test (gồm test chống rò rỉ split): PASS=7 WARN=0 ERROR=0 SKIP=0
+  {"dataset_version": "00f83d03d17d", "frames": 1019, "by_split": {"val": 164, "train": 684, "test": 171}, "trips_by_split": {"test": 4, "val": 4, "train": 18}}
+
+> Mỗi split có bao nhiêu khung hình và trip, ở từng drive
+drive_id  split  khung_hinh  trip  toc_do_tb_kmh
+--------  -----  ----------  ----  -------------
+drive_a   train  271         9     36.0         
+drive_a   val    82          2     40.0         
+drive_a   test   83          2     52.0         
+drive_b   train  413         9     67.0         
+drive_b   val    82          2     80.0         
+drive_b   test   88          2     75.0         
+
+MSSV dùng để chia split: 2A202602382
+CẦN THẤY: mỗi drive có đủ train, val, test; một trip chỉ nằm trong MỘT split; dataset_version là chuỗi 12 ký tự (đổi MSSV thì đổi version).
+
+--- Kiểm tra tự động của module 4 (verify --module 4) ---
+
+Module 4 · gold dataset
+  PASS  gold has frames in every split                                        1019 frames
+  PASS  no trip is in two splits (no leakage)                                 26 trips
+  PASS  every drive appears in train, val and test                            
+  PASS  gold contains no black / blurry / near-duplicate / out-of-sync frame  
+  PASS  one dataset_version, manifest.json agrees with the table              version 00f83d03d17d
+  PASS  manifest lists upstream table versions (lineage)                      
+  PASS  every manifest image exists under the dataset version folder          
+
+7/7 checks passed
+{"ok": true}
