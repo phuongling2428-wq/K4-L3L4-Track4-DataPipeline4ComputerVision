@@ -1,0 +1,47 @@
+Trip từ MSSV: 02382 % 26 = 16 -> trip-05905 (LAB_FAIL_ONCE=trip-05905)
+
+== day09_reset reset_crash_1 ==
+day09_reset  reset_crash_1  success  2026-10-12T20:01:20+00:00  2026-10-12T20:01:21.497887+00:00  2026-10-12T20:01:31.934645+00:00
+== day09_video_pipeline crash_run_1 (trước khi clear) ==
+day09_video_pipeline  crash_run_1   failed   2026-10-12T20:02:11+00:00  2026-10-12T20:02:12.701557+00:00  2026-10-12T20:05:31.023504+00:00
+bronze_drive_a map=2026-10-12T20:02:24.472701+00:00 success
+bronze_drive_b map=2026-10-12T20:02:24.360148+00:00 success
+bronze_trips map=2026-10-12T20:02:31.226865+00:00 success
+dbt_run_gold map=2026-10-12T20:04:38.788421+00:00 upstream_failed
+dbt_run_silver map=2026-10-12T20:04:37.720391+00:00 upstream_failed
+dbt_test_gold map=2026-10-12T20:04:39.309145+00:00 upstream_failed
+dbt_test_silver map=2026-10-12T20:04:38.666074+00:00 upstream_failed
+export_dataset map=2026-10-12T20:04:41.541390+00:00 upstream_failed
+publish_lake map=2026-10-12T20:04:40.430206+00:00 upstream_failed
+publish_warehouse map=2026-10-12T20:04:42.645256+00:00 upstream_failed
+silver_frames map=0 success
+silver_frames map=1 success
+silver_frames map=10 success
+silver_frames map=11 success
+silver_frames map=12 success
+silver_frames map=13 success
+silver_frames map=14 success
+silver_frames map=15 success
+silver_frames map=16 failed
+silver_frames map=17 success
+silver_frames map=18 success
+silver_frames map=19 success
+silver_frames map=2 success
+silver_frames map=20 success
+silver_frames map=21 success
+silver_frames map=22 success
+silver_frames map=23 success
+silver_frames map=24 success
+silver_frames map=25 success
+silver_frames map=3 success
+silver_frames map=4 success
+silver_frames map=5 success
+silver_frames map=6 success
+silver_frames map=7 success
+silver_frames map=8 success
+silver_frames map=9 success
+trip_commands map=2026-10-12T20:02:35.318532+00:00 success
+
+== log task đỏ ==
+[2026-10-12T20:04:37.306+0000] {subprocess.py:106} INFO - RuntimeError: simulated crash while extracting trip-05905; run it again
+[2026-10-12T20:04:37.306+0000] {subprocess.py:106} INFO - RuntimeError: simulated crash while extracting trip-05905; run it again
