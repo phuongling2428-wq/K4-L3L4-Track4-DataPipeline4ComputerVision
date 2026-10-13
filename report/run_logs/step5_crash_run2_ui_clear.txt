@@ -1,0 +1,17 @@
+Lần 2 (crash_run_2): log Airflow của crash_run_1 bị mất khi container được tạo lại, nên chạy lại bài tập để chụp ảnh; clear bằng nút 'Clear task' trong UI (Downstream + Recursive, Affected Tasks: 8).
+day09_reset  reset_crash_2  success  2026-10-13T03:00:55+00:00  2026-10-13T03:00:55.919806+00:00  2026-10-13T03:01:03.185828+00:00
+day09_video_pipeline  crash_run_2   success  2026-10-13T03:01:12+00:00  2026-10-13T03:06:46.456403+00:00  2026-10-13T03:08:48.322728+00:00
+     37 success
+[2026-10-13T03:03:06.999+0000] {subprocess.py:106} INFO - RuntimeError: simulated crash while extracting trip-05905; run it again
+attempt=1.log
+attempt=2.log
+rows  distinct_frames
+----  ---------------
+60    60             
+rows  distinct_frames
+----  ---------------
+1246  1246           
+  PASS  one dataset_version, manifest.json agrees with the table                 version 00f83d03d17d
+  PASS  manifest lists upstream table versions (lineage)                         
+  PASS  every manifest image exists under the dataset version folder             
+27/27 checks passed
